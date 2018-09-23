@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
 import './index.css';
-import Routes from './scenes/Routes';
+import Root from './components/Root';
 import configureStore from './services/configureStore';
 import registerServiceWorker from './services/registerServiceWorker';
 
 const store = configureStore();
 
-render(<Routes store={store} />, document.getElementById('root'));
+render(<Root store={store} />, document.getElementById('root'));
 registerServiceWorker();

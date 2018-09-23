@@ -2,11 +2,11 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
-import CounterExample from '../containers/CounterExample';
-import Home from '../Home';
-import TodoAppExample from '../TodoAppExample';
+import CounterExample from '../../scenes/containers/CounterExample';
+import Home from '../../scenes/Home';
+import TodoAppExample from '../../scenes/TodoAppExample';
 
-const Routes = ({ store }) => (
+const Root = ({ store }) => (
   <Provider store={store}>
     <Router>
       <React.Fragment>
@@ -18,8 +18,8 @@ const Routes = ({ store }) => (
   </Provider>
 );
 
-Routes.propTypes = {
+Root.propTypes = {
   store: PropTypes.shape({}).isRequired,
 };
 
-export default Routes;
+export default Root;
