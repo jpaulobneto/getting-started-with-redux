@@ -3,10 +3,24 @@ import PropTypes from 'prop-types';
 import {
   Button, Col, Grid, Row,
 } from 'react-bootstrap';
+import FilterLink from './containers/FilterLink';
 
+const getVisibleTodos = (todos, filter) => {
+  switch (filter) {
+    case 'SHOW_COMPLETED':
+      return todos.filter(todo => todo.completed);
+    case 'SHOW_ACTIVE':
+      return todos.filter(todo => !todo.completed);
+    default:
+      return todos;
+  }
+};
 class TodoApp extends React.Component {
   render() {
-    const { todos, onAddTodo, onToggleTodo } = this.props;
+    const {
+      todos, visibilityFilter, onAddTodo, onToggleTodo,
+    } = this.props;
+    const visibleTodos = getVisibleTodos(todos, visibilityFilter);
 
     return (
       <Grid>
@@ -25,7 +39,7 @@ class TodoApp extends React.Component {
                 Add todo
               </Button>
               <ul>
-                {todos.map(todo => (
+                {visibleTodos.map(todo => (
                   <li
                     key={todo.id}
                     onClick={() => onToggleTodo(todo.id)}
@@ -37,6 +51,21 @@ class TodoApp extends React.Component {
                   </li>
                 ))}
               </ul>
+              <p>
+                Show:
+                {' '}
+                <FilterLink filter="SHOW_ALL" currentFilter={visibilityFilter}>
+                  All
+                </FilterLink>
+                {' '}
+                <FilterLink filter="SHOW_ACTIVE" currentFilter={visibilityFilter}>
+                  Active
+                </FilterLink>
+                {' '}
+                <FilterLink filter="SHOW_COMPLETED" currentFilter={visibilityFilter}>
+                  Completed
+                </FilterLink>
+              </p>
             </main>
           </Col>
         </Row>
