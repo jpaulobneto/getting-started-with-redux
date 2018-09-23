@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
+import { addTodo } from '../../actions';
 
 const AddTodo = ({ onAddClick }) => {
   let input;
@@ -24,4 +26,11 @@ const AddTodo = ({ onAddClick }) => {
   );
 };
 
-export default AddTodo;
+const mapDispatchToProps = dispatch => ({
+  onAddClick: text => dispatch(addTodo(text)),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(AddTodo);
