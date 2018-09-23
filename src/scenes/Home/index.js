@@ -19,7 +19,7 @@ const Home = () => (
         <main>
           <ol>
             <li>
-              Counter:
+              Counter Example:
               {' '}
               <Link to="/counter-example">
                 <Button>Load</Button>
