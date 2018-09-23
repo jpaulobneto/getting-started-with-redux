@@ -1,13 +1,14 @@
 import { connect } from 'react-redux';
 import CounterExample from '../../CounterExample';
-import { increment } from '../../CounterExample/actions';
+import { decrement, increment } from '../../CounterExample/actions';
 
 const mapStateToProps = state => ({
-  counter: state.counter,
+  value: state.counter,
 });
 
 const mapDispatchToProps = dispatch => ({
-  onClick: () => dispatch(increment()),
+  onIncrement: () => dispatch(increment()),
+  onDecrement: () => dispatch(decrement()),
 });
 
 export default connect(

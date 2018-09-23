@@ -1,11 +1,15 @@
 import React from 'react';
-import { Col, Grid, Row } from 'react-bootstrap';
+import {
+  Button, Col, Grid, Row,
+} from 'react-bootstrap';
 
-const CounterExample = ({ counter, onClick }) => (
+const CounterExample = ({ value, onIncrement, onDecrement }) => (
   <Grid>
     <Row>
-      <Col xs={12} onClick={onClick}>
-        <h1>{counter}</h1>
+      <Col xs={12}>
+        <h1>{value}</h1>
+        <Button onClick={onIncrement}>+</Button>
+        <Button onClick={onDecrement}>-</Button>
       </Col>
     </Row>
   </Grid>
