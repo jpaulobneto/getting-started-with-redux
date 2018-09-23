@@ -1,4 +1,4 @@
-import { counter } from './reducer';
+import counter from './reducer';
 import { decrement, increment } from './actions';
 
 describe('Reducer | Counter Example', () => {
