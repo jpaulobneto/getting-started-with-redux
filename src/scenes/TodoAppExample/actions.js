@@ -16,7 +16,15 @@ export const toggleTodo = id => ({
   },
 });
 
+export const setVisibilityFilter = filter => ({
+  type: SET_VISIBILITY_FILTER,
+  payload: {
+    filter,
+  },
+});
+
 export default {
   addTodo,
   toggleTodo,
+  setVisibilityFilter,
 };
