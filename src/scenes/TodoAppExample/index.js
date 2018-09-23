@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Button, Col, Grid, Row,
-} from 'react-bootstrap';
-import FilterLink from './containers/FilterLink';
+import { connect } from 'react-redux';
+import { Col, Grid, Row } from 'react-bootstrap';
+import { addTodo, toggleTodo, setVisibilityFilter } from './actions';
 import TodoList from './components/TodoList';
+import AddTodo from './components/AddTodo';
+import Footer from './components/Footer';
 
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
@@ -16,52 +17,36 @@ const getVisibleTodos = (todos, filter) => {
       return todos;
   }
 };
-class TodoApp extends React.Component {
-  render() {
-    const {
-      todos, visibilityFilter, onAddTodo, onToggleTodo,
-    } = this.props;
-    const visibleTodos = getVisibleTodos(todos, visibilityFilter);
 
-    return (
-      <Grid>
-        <Row>
-          <Col xs={12}>
-            <header>
-              <h1>TodoApp Example</h1>
-            </header>
-            <main>
-              <input
-                ref={(node) => {
-                  this.input = node;
-                }}
-              />
-              <Button bsStyle="primary" onClick={() => onAddTodo(this.input.value)}>
-                Add todo
-              </Button>
-              <TodoList todos={visibleTodos} onTodoClick={onToggleTodo} />
-              <p>
-                Show:
-                {' '}
-                <FilterLink filter="SHOW_ALL" currentFilter={visibilityFilter}>
-                  All
-                </FilterLink>
-                {' '}
-                <FilterLink filter="SHOW_ACTIVE" currentFilter={visibilityFilter}>
-                  Active
-                </FilterLink>
-                {' '}
-                <FilterLink filter="SHOW_COMPLETED" currentFilter={visibilityFilter}>
-                  Completed
-                </FilterLink>
-              </p>
-            </main>
-          </Col>
-        </Row>
-      </Grid>
-    );
-  }
-}
+const TodoApp = ({
+  todos, visibilityFilter, onAddTodo, onToggleTodo, onFilterClick,
+}) => (
+  <Grid>
+    <Row>
+      <Col xs={12}>
+        <header>
+          <h1>TodoApp Example</h1>
+        </header>
+        <main>
+          <AddTodo onAddClick={onAddTodo} />
+          <TodoList todos={getVisibleTodos(todos, visibilityFilter)} onTodoClick={onToggleTodo} />
+          <Footer visibilityFilter={visibilityFilter} onFilterClick={onFilterClick} />
+        </main>
+      </Col>
+    </Row>
+  </Grid>
+);
+
+const mapStateToProps = state => ({
+  todos: state.todoApp.todos,
+  visibilityFilter: state.todoApp.visibilityFilter,
+});
+
+const mapDispatchToProps = dispatch => ({
+  onAddTodo: text => dispatch(addTodo(text)),
+  onFilterClick: filter => dispatch(setVisibilityFilter(filter)),
+  onToggleTodo: id => dispatch(toggleTodo(id)),
+});
 
 TodoApp.propTypes = {
   todos: PropTypes.arrayOf(
@@ -71,8 +56,12 @@ TodoApp.propTypes = {
       completed: PropTypes.bool.isRequired,
     }),
   ).isRequired,
+  visibilityFilter: PropTypes.string.isRequired,
   onAddTodo: PropTypes.func.isRequired,
   onToggleTodo: PropTypes.func.isRequired,
 };
 
-export default TodoApp;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(TodoApp);

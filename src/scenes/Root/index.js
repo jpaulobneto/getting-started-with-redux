@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
 import CounterExample from '../containers/CounterExample';
 import Home from '../Home';
-import TodoAppExample from '../containers/TodoAppExample';
+import TodoAppExample from '../TodoAppExample';
 
 const Root = ({ store }) => (
   <Provider store={store}>
