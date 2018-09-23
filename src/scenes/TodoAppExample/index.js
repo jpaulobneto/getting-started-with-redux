@@ -4,6 +4,7 @@ import {
   Button, Col, Grid, Row,
 } from 'react-bootstrap';
 import FilterLink from './containers/FilterLink';
+import TodoList from './components/TodoList';
 
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
@@ -38,19 +39,7 @@ class TodoApp extends React.Component {
               <Button bsStyle="primary" onClick={() => onAddTodo(this.input.value)}>
                 Add todo
               </Button>
-              <ul>
-                {visibleTodos.map(todo => (
-                  <li
-                    key={todo.id}
-                    onClick={() => onToggleTodo(todo.id)}
-                    style={{
-                      textDecoration: todo.completed ? 'line-through' : 'none',
-                    }}
-                  >
-                    {todo.text}
-                  </li>
-                ))}
-              </ul>
+              <TodoList todos={visibleTodos} onTodoClick={onToggleTodo} />
               <p>
                 Show:
                 {' '}
