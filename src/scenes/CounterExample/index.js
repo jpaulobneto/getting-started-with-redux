@@ -8,9 +8,14 @@ const CounterExample = ({ value, onIncrement, onDecrement }) => (
   <Grid>
     <Row>
       <Col xs={12}>
-        <h1>{value}</h1>
-        <Button onClick={onIncrement}>+</Button>
-        <Button onClick={onDecrement}>-</Button>
+        <header>
+          <h1>Counter Example</h1>
+        </header>
+        <main>
+          <h1>{value}</h1>
+          <Button onClick={onIncrement}>+</Button>
+          <Button onClick={onDecrement}>-</Button>
+        </main>
       </Col>
     </Row>
   </Grid>
