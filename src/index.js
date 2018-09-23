@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import './index.css';
 import Routes from './scenes/Routes';
 import configureStore from './services/configureStore';
-import registerServiceWorker from './registerServiceWorker';
+import registerServiceWorker from './services/registerServiceWorker';
 
 const store = configureStore();
 
