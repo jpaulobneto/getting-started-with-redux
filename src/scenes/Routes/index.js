@@ -6,7 +6,7 @@ import CounterExample from '../containers/CounterExample';
 import Home from '../Home';
 import TodoAppExample from '../TodoAppExample';
 
-const Root = ({ store }) => (
+const Routes = ({ store }) => (
   <Provider store={store}>
     <Router>
       <React.Fragment>
@@ -18,8 +18,8 @@ const Root = ({ store }) => (
   </Provider>
 );
 
-Root.propTypes = {
+Routes.propTypes = {
   store: PropTypes.shape({}).isRequired,
 };
 
-export default Root;
+export default Routes;
