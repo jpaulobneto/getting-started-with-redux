@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { addTodo } from '../../actions';
 
-const AddTodo = ({ onAddClick }) => {
+const AddTodo = ({ dispatch }) => {
   let input;
 
   return (
@@ -16,7 +16,7 @@ const AddTodo = ({ onAddClick }) => {
       <Button
         bsStyle="primary"
         onClick={() => {
-          onAddClick(input.value);
+          dispatch(addTodo(input.value));
           input.value = '';
         }}
       >
@@ -26,11 +26,4 @@ const AddTodo = ({ onAddClick }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  onAddClick: text => dispatch(addTodo(text)),
-});
-
-export default connect(
-  null,
-  mapDispatchToProps,
-)(AddTodo);
+export default connect()(AddTodo);
