@@ -1,29 +1,26 @@
-import counter from './reducer';
+import { counter } from './reducer';
+import { decrement, increment } from './actions';
 
-describe('Reducer | Counter', () => {
-  it('returns the current state if the action is unknown', () => {
-    const action = { type: 'SOMETHING_ELSE' };
+describe('Reducer | Counter Example', () => {
+  const unknown = () => ({ type: 'SOMETHING_ELSE' });
 
-    expect(counter(0, action)).toEqual(0);
-  });
+  describe('counter', () => {
+    it('returns the current state if the action is unknown', () => {
+      expect(counter(0, unknown())).toEqual(0);
+    });
 
-  it('returns the initial state if current state is undefined', () => {
-    const action = { type: 'SOMETHING_ELSE' };
+    it('returns the initial state if current state is undefined', () => {
+      expect(counter(undefined, unknown())).toEqual(0);
+    });
 
-    expect(counter(undefined, action)).toEqual(0);
-  });
+    it('increments counter', () => {
+      expect(counter(0, increment())).toEqual(1);
+      expect(counter(1, increment())).toEqual(2);
+    });
 
-  it('increments counter', () => {
-    const action = { type: 'INCREMENT' };
-
-    expect(counter(0, action)).toEqual(1);
-    expect(counter(1, action)).toEqual(2);
-  });
-
-  it('decrements counter', () => {
-    const action = { type: 'DECREMENT' };
-
-    expect(counter(2, action)).toEqual(1);
-    expect(counter(1, action)).toEqual(0);
+    it('decrements counter', () => {
+      expect(counter(2, decrement())).toEqual(1);
+      expect(counter(1, decrement())).toEqual(0);
+    });
   });
 });
