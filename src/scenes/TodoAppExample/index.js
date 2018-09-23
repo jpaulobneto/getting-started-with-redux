@@ -6,7 +6,7 @@ import {
 
 class TodoApp extends React.Component {
   render() {
-    const { todos, onAddTodo } = this.props;
+    const { todos, onAddTodo, onToggleTodo } = this.props;
 
     return (
       <Grid>
@@ -26,7 +26,15 @@ class TodoApp extends React.Component {
               </Button>
               <ul>
                 {todos.map(todo => (
-                  <li key={todo.id}>{todo.text}</li>
+                  <li
+                    key={todo.id}
+                    onClick={() => onToggleTodo(todo.id)}
+                    style={{
+                      textDecoration: todo.completed ? 'line-through' : 'none',
+                    }}
+                  >
+                    {todo.text}
+                  </li>
                 ))}
               </ul>
             </main>
@@ -46,6 +54,7 @@ TodoApp.propTypes = {
     }),
   ).isRequired,
   onAddTodo: PropTypes.func.isRequired,
+  onToggleTodo: PropTypes.func.isRequired,
 };
 
 export default TodoApp;
