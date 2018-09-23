@@ -2,6 +2,10 @@ import freeze from 'deep-freeze';
 import { addTodo, toggleTodo } from './actions';
 import { todos } from './reducer';
 
+jest.mock('node-uuid', () => ({
+  v4: jest.fn().mockReturnValue('generated-uuid'),
+}));
+
 describe('Reducer | Todo App Example', () => {
   const unknown = () => ({ type: 'SOMETHING_ELSE' });
 
@@ -24,7 +28,7 @@ describe('Reducer | Todo App Example', () => {
       const stateBefore = [];
       const stateAfter = [
         {
-          id: 0,
+          id: 'generated-uuid',
           text: 'Learn Redux',
           completed: false,
         },
