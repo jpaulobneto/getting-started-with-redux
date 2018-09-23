@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Button, Col, Grid, Row,
 } from 'react-bootstrap';
@@ -20,7 +21,9 @@ const Home = () => (
             <li>
               Counter:
               {' '}
-              <Button>Load</Button>
+              <Link to="/counter-example">
+                <Button>Load</Button>
+              </Link>
             </li>
           </ol>
         </main>
