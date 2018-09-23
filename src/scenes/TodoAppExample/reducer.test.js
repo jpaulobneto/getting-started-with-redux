@@ -1,5 +1,5 @@
 import freeze from 'deep-freeze';
-import { ADD_TODO, TOGGLE_TODO } from './actions';
+import { addTodo, toggleTodo } from './actions';
 import { todos } from './reducer';
 
 describe('Reducer | Todo App Example', () => {
@@ -29,10 +29,7 @@ describe('Reducer | Todo App Example', () => {
           completed: false,
         },
       ];
-      const action = {
-        type: ADD_TODO,
-        payload: { text: 'Learn Redux' },
-      };
+      const action = addTodo('Learn Redux');
 
       freeze(stateBefore);
       freeze(action);
@@ -54,10 +51,7 @@ describe('Reducer | Todo App Example', () => {
         },
       ];
       const stateAfter = [{ ...stateBefore[0] }, { ...stateBefore[1], completed: true }];
-      const action = {
-        type: TOGGLE_TODO,
-        payload: { id: 1 },
-      };
+      const action = toggleTodo(1);
 
       freeze(stateBefore);
       freeze(action);

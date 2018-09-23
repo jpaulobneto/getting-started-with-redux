@@ -1,18 +1,11 @@
 import { combineReducers } from 'redux';
 import { ADD_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER } from './actions';
 
-let currentID = -1;
-
-const nextID = () => {
-  currentID += 1;
-  return currentID;
-};
-
 const todo = (state = {}, action) => {
   switch (action.type) {
     case ADD_TODO:
       return {
-        id: nextID(),
+        id: action.payload.id,
         text: action.payload.text,
         completed: false,
       };
