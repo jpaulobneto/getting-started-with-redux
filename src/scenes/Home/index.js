@@ -25,6 +25,13 @@ const Home = () => (
                 <Button>Load</Button>
               </Link>
             </li>
+            <li>
+              TodoApp Example:
+              {' '}
+              <Link to="/todo-app-example">
+                <Button>Load</Button>
+              </Link>
+            </li>
           </ol>
         </main>
       </Col>
