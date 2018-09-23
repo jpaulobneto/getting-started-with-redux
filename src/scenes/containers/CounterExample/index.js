@@ -7,8 +7,12 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onIncrement: () => dispatch(increment()),
-  onDecrement: () => dispatch(decrement()),
+  onIncrement() {
+    dispatch(increment());
+  },
+  onDecrement() {
+    dispatch(decrement());
+  },
 });
 
 export default connect(
