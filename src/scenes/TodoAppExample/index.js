@@ -30,7 +30,7 @@ const TodoApp = ({
         <main>
           <AddTodo onAddClick={onAddTodo} />
           <TodoList todos={getVisibleTodos(todos, visibilityFilter)} onTodoClick={onToggleTodo} />
-          <Footer visibilityFilter={visibilityFilter} onFilterClick={onFilterClick} />
+          <Footer />
         </main>
       </Col>
     </Row>
