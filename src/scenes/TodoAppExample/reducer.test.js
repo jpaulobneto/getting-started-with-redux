@@ -1,6 +1,6 @@
 import freeze from 'deep-freeze';
 import { ADD_TODO, TOGGLE_TODO } from './actions';
-import todos from './reducer';
+import { todos } from './reducer';
 
 describe('Reducer | Todo App Example', () => {
   const unknown = () => ({ type: 'SOMETHING_ELSE' });
