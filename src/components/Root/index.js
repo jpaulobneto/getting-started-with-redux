@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
 import CounterExample from '../../scenes/containers/CounterExample';
@@ -9,11 +9,11 @@ import TodoAppExample from '../../scenes/TodoAppExample';
 const Root = ({ store }) => (
   <Provider store={store}>
     <Router>
-      <React.Fragment>
+      <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/counter-example" component={CounterExample} />
-        <Route path="/todo-app-example" component={TodoAppExample} />
-      </React.Fragment>
+        <Route path="/todo-app-example/:filter?" component={TodoAppExample} />
+      </Switch>
     </Router>
   </Provider>
 );
