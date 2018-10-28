@@ -4,7 +4,7 @@ import AddTodo from './containers/AddTodo';
 import Footer from './components/Footer';
 import VisibleTodoList from './containers/VisibleTodoList';
 
-const TodoApp = () => (
+const TodoApp = ({ match }) => (
   <Grid>
     <Row>
       <Col xs={12}>
@@ -13,7 +13,7 @@ const TodoApp = () => (
         </header>
         <main>
           <AddTodo />
-          <VisibleTodoList />
+          <VisibleTodoList filter={match.params.filter || 'all'} />
           <Footer />
         </main>
       </Col>
